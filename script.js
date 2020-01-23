@@ -1,18 +1,20 @@
-const slowTask = () => {
-  console.log("slow task finished");
-};
+//multiplies two numbers
+function mult(x,y){ 
+  return x * y;  
+}
 
-const asyncSlowTask = val => {
-  setTimeout(slowTask, 2000);
-};
+//adds to numbers
+function add(x,y){  
+  return x + y;
+}
 
-const fastTask = () => {
-  console.log("fast task finished!");
-};
+//uses a callback to process two numbers
+function calculate(x,y,compute){ 
+  return compute(x,y);
+}
 
-fastTask();
-asyncSlowTask();
-fastTask();
-asyncSlowTask();
-fastTask();
-fastTask();
+let a = calculate(10,5,add); //uses add callback
+console.log(a); // logs 15
+
+let b = calculate(10,5,mult); //uses mult callback
+console.log(b); // logs 50
