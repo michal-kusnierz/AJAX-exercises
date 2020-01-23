@@ -10,10 +10,9 @@ document.getElementById("myButton").onclick = () => {
 };
 
 
-document.addEventListener('keypress',handleKeyPress);
+const handleKeyPress = event => {
+  let keyPressed = event.key; 
+  document.getElementById("text").innerHTML = "Key Pressed: " +  keyPressed;
+}; 
 
-function handleKeyPress(event){
-    var keyPressed= event.key; //event.key contains the key that was pressed
-    document.getElementById("text").innerHTML = "Key Pressed: " +  keyPressed;
-    //sets the HTML text to display the key pressed
-} 
+document.addEventListener('keypress',handleKeyPress);
