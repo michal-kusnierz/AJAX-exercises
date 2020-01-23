@@ -3,6 +3,8 @@ setTimeout
 clearTimeout
 */
 
-setTimeout(function() {
+const timeout = setTimeout(function() {
   console.log("hello");
 }, 1000);
+
+clearTimeout(timeout);
