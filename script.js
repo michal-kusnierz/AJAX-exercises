@@ -4,7 +4,10 @@ setInterval
 
 let count = 0;
 
-const interval = setInterval(()=>{
+const interval = setInterval(() => {
   count++;
   console.log(count);
-},1000);
+  if (count >= 3) {
+    clearInterval(interval);
+  }
+}, 1000);
