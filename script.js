@@ -1,13 +1,17 @@
 /*
-setInterval
+Asynchronous Code Using Timers
 */
 
-let count = 0;
+const asyncLog = val => {
+  //logs values asynchronously
+  setTimeout(() => {
+    //setTimeout with a time of 0 will execute asynchronously
+    console.log(val);
+  }, 0);
+};
 
-const interval = setInterval(() => {
-  count++;
-  console.log(count);
-  if (count >= 3) {
-    clearInterval(interval);
-  }
-}, 1000);
+setTimeout(() => {
+  console.log("first");
+}, 0);
+asyncLog("second"); // "second" will be printed last as async func
+console.log("third");
