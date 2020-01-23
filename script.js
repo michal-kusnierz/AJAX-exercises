@@ -1,9 +1,10 @@
-const array = [1, 2, 3, 4, 5];
+const array = [1,2,3,4,5];
 
-const newArray = array.map(x => {
-  //uses an anonymous callback function to square each element
-  return x * x;
-});
+function isEven(x){ //checks if a value is even
+   return x % 2 == 0; 
+}
+
+const newArray = array.filter(isEven); //uses a callback to check if an element is even
 
 console.log(newArray);
-// logs [1,4,9,16,25]
+// logs [2,4]
