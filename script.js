@@ -1,10 +1,10 @@
 /*
-setTimeout
-clearTimeout
+setInterval
 */
 
-const timeout = setTimeout(function() {
-  console.log("hello");
-}, 1000);
+let count = 0;
 
-clearTimeout(timeout);
+const interval = setInterval(()=>{
+  count++;
+  console.log(count);
+},1000);
