@@ -19,6 +19,10 @@ const setUp = () => {
     cell.addEventListener("mouseenter",(() => {
       if(this.completed == false && this.clicked == false)
           this.style.background = "orange";
-  }));
+    }));
+    cell.addEventListener("mouseleave",(() => {
+      if(this.completed == false && this.clicked == false)
+          this.style.background = "blue";
+    }));
   }
 };
