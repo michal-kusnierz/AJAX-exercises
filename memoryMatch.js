@@ -15,5 +15,10 @@ const setUp = () => {
     cell.completed = false;
     cell.clicked = false;
     cell.value = answers[i];
+
+    cell.addEventListener("mouseenter",(() => {
+      if(this.completed == false && this.clicked == false)
+          this.style.background = "orange";
+  }));
   }
 };
