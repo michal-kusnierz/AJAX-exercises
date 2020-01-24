@@ -16,14 +16,14 @@ const setUp = () => {
     cell.clicked = false;
     cell.value = answers[i];
 
-    cell.addEventListener("mouseenter",(() => {
+    cell.addEventListener("mouseenter", function() {
       if(this.completed == false && this.clicked == false)
-          this.style.background = "orange";
-    }));
-    cell.addEventListener("mouseleave",(() => {
+        this.style.background = "orange";
+    });
+    cell.addEventListener("mouseleave", function() {
       if(this.completed == false && this.clicked == false)
-          this.style.background = "blue";
-    }));
+        this.style.background = "blue";
+    });
   }
 };
 
