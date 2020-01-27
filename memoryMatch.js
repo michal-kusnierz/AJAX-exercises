@@ -25,6 +25,12 @@ const hide = cell => {
   cell.clicked = false;
 };
 
+const complete = cell => {
+  numCompleted++;
+  cell.completed = true;
+  cell.style.backgroundColor = "purple";
+};
+
 const startTimer = () => {
   if (started == false){
     interval = setInterval(function(){
