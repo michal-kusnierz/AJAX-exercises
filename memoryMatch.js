@@ -60,6 +60,8 @@ const setUp = () => {
         this.style.background = "blue";
     });
     cell.addEventListener('click',function() {
+      if(ready == false)
+        return;
       if(this.clicked == false && this.completed == false){
         clickedArray.push(this);
         startTimer();
