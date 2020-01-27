@@ -83,7 +83,13 @@ const setUp = () => {
         document.getElementById("gridTable").style.border = "5px solid red";
 
         setTimeout(function() {
-          //after a 500ms delay
+          hide(clickedArray[0]);
+          hide(clickedArray[1]);
+
+          clickedArray = [];
+
+          ready = true;
+          document.getElementById("gridTable").style.border = "5px solid black";
         }, 500);
       }
     }
