@@ -8,6 +8,12 @@ const randomAnswers = () => {
   return answers;
 };
 
+const reveal = cell => {
+  cell.style.backgroundColor = "red";
+  cell.innerHTML = cell.value;
+  cell.clicked = true;
+};
+
 const setUp = () => {
   const grid = document.getElementsByTagName("td");
   const answers = randomAnswers();
