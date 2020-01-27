@@ -66,18 +66,17 @@ const setUp = () => {
         clickedArray.push(this);
         startTimer();
         reveal(this);
-    }});
-   
-    if (clickedArray.length == 2) {
-      if (clickedArray[0].value == clickedArray[1].value) {
-        complete(clickedArray[0]);
-        complete(clickedArray[1]);
-        clickedArray = [];
+      };
+      if (clickedArray.length == 2) {
+        if (clickedArray[0].value == clickedArray[1].value) {
+          complete(clickedArray[0]);
+          complete(clickedArray[1]);
+          clickedArray = [];
 
-        if(numCompleted == 8){
-          alert("You won in " + time + " seconds!");
-          clearInterval(interval);
-        }
+          if(numCompleted == 8){
+            alert("You won in " + time + " seconds!");
+            clearInterval(interval);
+          }
       } else {
         ready = false;
         document.getElementById("gridTable").style.border = "5px solid red";
@@ -92,8 +91,8 @@ const setUp = () => {
           document.getElementById("gridTable").style.border = "5px solid black";
         }, 500);
       }
-    }
-  }
-};
+      }
+    })
+  }}
 
 setUp();
