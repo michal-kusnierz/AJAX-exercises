@@ -1,4 +1,3 @@
-var clickedArray = [];
 const clickedArray = [];
 
 const randomAnswers = () => {
