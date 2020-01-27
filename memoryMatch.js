@@ -1,4 +1,4 @@
-const clickedArray = [];
+let clickedArray = [];
 let interval;
 let started = false;
 let time = 0;
