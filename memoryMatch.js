@@ -79,7 +79,9 @@ const setUp = () => {
           clearInterval(interval);
         }
       } else {
-        //if a matching pair is not found
+        ready = false;
+        document.getElementById("gridTable").style.border = "5px solid red";
+
         setTimeout(function() {
           //after a 500ms delay
         }, 500);
