@@ -24,6 +24,9 @@ const setUp = () => {
       if(this.completed == false && this.clicked == false)
         this.style.background = "blue";
     });
+    cell.addEventListener('click',function() {
+
+    });
   }
 };
 
