@@ -66,15 +66,21 @@ const setUp = () => {
         reveal(this);
     }});
    
-    if(clickedArray.length == 2){
-      if(clickedArray[0].value == clickedArray[1].value){
-          //if a matching pair is found
-      }
-      else{
-          //if a matching pair is not found
-          setTimeout(function(){
-              //after a 500ms delay
-          },500);
+    if (clickedArray.length == 2) {
+      if (clickedArray[0].value == clickedArray[1].value) {
+        complete(clickedArray[0]);
+        complete(clickedArray[1]);
+        clickedArray = [];
+
+        if(numCompleted == 8){
+          alert("You won in " + time + " seconds!");
+          clearInterval(interval);
+        }
+      } else {
+        //if a matching pair is not found
+        setTimeout(function() {
+          //after a 500ms delay
+        }, 500);
       }
     }
   }
