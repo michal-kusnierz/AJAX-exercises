@@ -33,8 +33,10 @@ const setUp = () => {
         this.style.background = "blue";
     });
     cell.addEventListener('click',function() {
-
-    });
+      if(this.clicked == false && this.completed == false){
+        clickedArray.push(this);
+        reveal(this);
+    }});
   }
 };
 
