@@ -19,13 +19,19 @@ const reveal = cell => {
   cell.clicked = true;
 };
 
+const hide = cell => {
+  cell.style.backgroundColor = "blue";
+  cell.innerHTML = "";
+  cell.clicked = false;
+};
+
 const startTimer = () => {
   if (started == false){
-      interval = setInterval(function(){
-          time++;
-          document.getElementById("timer").innerHTML = "Time Elapsed: " + time;
-      },1000)
-      started = true;
+    interval = setInterval(function(){
+      time++;
+      document.getElementById("timer").innerHTML = "Time Elapsed: " + time;
+    },1000)
+    started = true;
   }
 };
 
