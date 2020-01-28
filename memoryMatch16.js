@@ -77,7 +77,7 @@ const setUp = () => {
           if (numCompleted == 16) {
             // alert("You won in " + time + " seconds!");
             timer.innerHTML = "You won in " + time + " seconds!";
-            timer.color = "red";
+            timer.style.backgroundColor = "orange";
             clearInterval(interval);
           }
         } else {
