@@ -1,0 +1,16 @@
+body{
+  margin: 20px;
+}
+  
+#memory{
+  display: flex;
+  flex-direction: column;
+}
+
+ul{
+  margin: 10px;
+}
+
+a{
+  text-decoration-line: none;
+}

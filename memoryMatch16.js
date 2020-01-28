@@ -5,10 +5,10 @@ let time = 0;
 let ready = true;
 let numCompleted = 0;
 const timer = document.getElementById("timer");
-const changeGame = document.getElementById("changeGame");
+const gridTable = document.getElementById("gridTable");
 
 const randomAnswers = () => {
-  const answers = [1, 1, 2, 2, 3, 3, 4, 4, 5];
+  const answers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
   answers.sort(item => {
     return 0.5 - Math.random();
   });
@@ -74,16 +74,16 @@ const setUp = () => {
           complete(clickedArray[1]);
           clickedArray = [];
 
-          if (numCompleted == 8) {
+          if (numCompleted == 16) {
             // alert("You won in " + time + " seconds!");
             timer.innerHTML = "You won in " + time + " seconds!";
             timer.style.backgroundColor = "orange";
             clearInterval(interval);
-            changeGame.style.display = "block";
+            document.getElementById("changeGame").style.display = 'block';
           }
         } else {
           ready = false;
-          document.getElementById("gridTable").style.border = "5px solid red";
+          gridTable.style.border = "5px solid red";
 
           setTimeout(() => {
             hide(clickedArray[0]);
@@ -92,19 +92,13 @@ const setUp = () => {
             clickedArray = [];
 
             ready = true;
-            document.getElementById("gridTable").style.border =
+            gridTable.style.border =
               "5px solid black";
           }, 500);
         }
       }
     });
   }
-
-  document.addEventListener("keydown", event => {
-    if (event.key > 0 && event.key < 10) {
-      grid[event.key - 1].click();
-    }
-  });
 
   document.getElementById("restart").addEventListener("click", () => {
     location.reload();

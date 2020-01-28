@@ -1,9 +1,12 @@
 body {
-  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 table {
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
 
 table,
@@ -22,4 +25,16 @@ td {
   padding: 2px 10px;
   background-color: lightskyblue;
   border-radius: 5px;
+}
+#restart:hover{
+  cursor: pointer;
+}
+
+#timer{
+  padding: 5px;
+}
+
+#changeGame{
+  display: none;
+  padding: 2px 10px;
 }
