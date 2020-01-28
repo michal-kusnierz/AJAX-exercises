@@ -5,6 +5,7 @@ let time = 0;
 let ready = true;
 let numCompleted = 0;
 const timer = document.getElementById("timer");
+const gridTable = document.getElementById("gridTable");
 
 const randomAnswers = () => {
   const answers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
@@ -76,11 +77,12 @@ const setUp = () => {
           if (numCompleted == 16) {
             // alert("You won in " + time + " seconds!");
             timer.innerHTML = "You won in " + time + " seconds!";
+            timer.color = "red";
             clearInterval(interval);
           }
         } else {
           ready = false;
-          document.getElementById("gridTable").style.border = "5px solid red";
+          gridTable.style.border = "5px solid red";
 
           setTimeout(() => {
             hide(clickedArray[0]);
@@ -89,7 +91,7 @@ const setUp = () => {
             clickedArray = [];
 
             ready = true;
-            document.getElementById("gridTable").style.border =
+            gridTable.style.border =
               "5px solid black";
           }, 500);
         }
