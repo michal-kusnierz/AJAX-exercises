@@ -95,13 +95,13 @@ const setUp = () => {
     })
   };
 
-  document.addEventListener('keydown', function(event){
+  document.addEventListener('keydown', event => {
     if(event.key > 0 && event.key < 10 ){
         grid[event.key - 1].click();
     }
   });
   
-  document.getElementById('restart').addEventListener('click', function(){
+  document.getElementById('restart').addEventListener('click', () => {
     location.reload();
   });
 }
