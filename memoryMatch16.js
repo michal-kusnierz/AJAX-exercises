@@ -4,6 +4,7 @@ let started = false;
 let time = 0;
 let ready = true;
 let numCompleted = 0;
+const timer = document.getElementById("timer");
 
 const randomAnswers = () => {
   const answers = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8];
@@ -35,7 +36,7 @@ const startTimer = () => {
   if (started == false) {
     interval = setInterval(() => {
       time++;
-      document.getElementById("timer").innerHTML = "Time Elapsed: " + time;
+      timer.innerHTML = "Time Elapsed: " + time;
     }, 1000);
     started = true;
   }
@@ -73,7 +74,8 @@ const setUp = () => {
           clickedArray = [];
 
           if (numCompleted == 16) {
-            alert("You won in " + time + " seconds!");
+            // alert("You won in " + time + " seconds!");
+            timer.innerHTML = "You won in " + time + " seconds!";
             clearInterval(interval);
           }
         } else {
