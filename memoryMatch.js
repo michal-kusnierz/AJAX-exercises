@@ -81,7 +81,7 @@ const setUp = () => {
         ready = false;
         document.getElementById("gridTable").style.border = "5px solid red";
 
-        setTimeout(function() {
+        setTimeout(() => {
           hide(clickedArray[0]);
           hide(clickedArray[1]);
 
