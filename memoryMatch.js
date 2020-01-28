@@ -33,7 +33,7 @@ const complete = cell => {
 
 const startTimer = () => {
   if (started == false){
-    interval = setInterval(function(){
+    interval = setInterval(() =>{
       time++;
       document.getElementById("timer").innerHTML = "Time Elapsed: " + time;
     },1000)
