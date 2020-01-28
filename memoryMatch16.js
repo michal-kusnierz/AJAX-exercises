@@ -72,7 +72,7 @@ const setUp = () => {
           complete(clickedArray[1]);
           clickedArray = [];
 
-          if (numCompleted == 8) {
+          if (numCompleted == 16) {
             alert("You won in " + time + " seconds!");
             clearInterval(interval);
           }
