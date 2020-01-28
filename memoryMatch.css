@@ -30,3 +30,8 @@ td {
 #timer{
   padding: 5px;
 }
+
+#changeGame{
+  display: none;
+  padding: 2px 10px;
+}
