@@ -79,6 +79,7 @@ const setUp = () => {
             timer.innerHTML = "You won in " + time + " seconds!";
             timer.style.backgroundColor = "orange";
             clearInterval(interval);
+            document.getElementById("changeGame").style.display = 'block';
           }
         } else {
           ready = false;
