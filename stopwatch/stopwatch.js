@@ -34,7 +34,7 @@ const resetTimer = () => {
   stopTimer();
   time = 0;
   timer.innerHTML = time;
-  recordList.innerHTML = 'Past Times';
+  recordList.innerHTML = 'Past Times:';
 };
 
 const recordTimer = () => {
