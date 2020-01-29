@@ -1,4 +1,7 @@
-let time = 0;
+let time;
+let counter = 0;
+let seconds = 0;
+let minutes = 0;
 let started;
 let interval;
 const timer = document.getElementById('timer');
@@ -8,7 +11,16 @@ const recordBtn = document.getElementById('record');
 const recordList = document.getElementById('record_list');
 
 const clock = () => {
-  time++;
+  counter++;
+  if (counter >= 100){
+    counter=0;
+    seconds++;
+    if (seconds >= 60) {
+      seconds = 0;
+      minutes++
+    }
+  }
+  time = `${minutes}:${seconds}.${counter}`;
   timer.innerHTML = time;
 };
 
