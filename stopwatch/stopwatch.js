@@ -15,7 +15,6 @@ const clock = () => {
 const startTimer = () => {
   interval = setInterval(clock, 10);
   started = true;
-  recordBtn.addEventListener('click', recordTimer);
 };
 
 const stopTimer = () => {
@@ -62,4 +61,5 @@ const handleKeyPress = event => {
 
 startBtn.addEventListener('click', toggleTimer);
 resetBtn.addEventListener('click', resetTimer);
+recordBtn.addEventListener('click', recordTimer);
 document.addEventListener('keypress', handleKeyPress);
