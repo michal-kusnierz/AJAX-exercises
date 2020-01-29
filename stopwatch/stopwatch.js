@@ -28,4 +28,12 @@ const toggleTimer = () => {
     stopTimer()
   }
 };
+
+const resetTimer = () => {
+  stopTimer();
+  time = 0;
+  timer.innerHTML = time;
+};
+
 startBtn.addEventListener('click', toggleTimer);
+resetBtn.addEventListener('click', resetTimer);
