@@ -44,5 +44,22 @@ const recordTimer = () => {
   recordList.appendChild(record);
 };
 
+const handleKeyPress = event => {
+  switch (event.key) {
+    case 's':
+      toggleTimer();
+      break;
+    case 'r':
+      resetTimer();
+      break;
+    case 't':
+      recordTimer();
+      break;
+    default:
+      return;
+  }
+}; 
+
 startBtn.addEventListener('click', toggleTimer);
 resetBtn.addEventListener('click', resetTimer);
+document.addEventListener('keypress', handleKeyPress);
