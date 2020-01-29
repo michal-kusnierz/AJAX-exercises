@@ -39,7 +39,7 @@ const resetTimer = () => {
 
 const recordTimer = () => {
   let record = document.createElement('li');
-  record.textContent = time + ' ms';
+  record.textContent = time;
   recordList.appendChild(record);
 };
 
