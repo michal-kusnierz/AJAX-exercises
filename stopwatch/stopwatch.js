@@ -15,6 +15,7 @@ const clock = () => {
 const startTimer = () => {
   interval = setInterval(clock, 10);
   started = true;
+  recordBtn.addEventListener('click', recordTimer);
 };
 
 const stopTimer = () => {
@@ -44,4 +45,3 @@ const recordTimer = () => {
 
 startBtn.addEventListener('click', toggleTimer);
 resetBtn.addEventListener('click', resetTimer);
-recordBtn.addEventListener('click', recordTimer);
