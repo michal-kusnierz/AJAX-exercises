@@ -13,15 +13,26 @@ const recordList = document.getElementById('record_list');
 const clock = () => {
   counter++;
   if (counter >= 100){
-    counter=0;
+    counter = 0;
     seconds++;
-    if (seconds >= 60) {
+      if (seconds >= 60) {
       seconds = 0;
       minutes++
     }
   }
-  time = `${minutes}:${seconds}.${counter}`;
   timer.innerHTML = time;
+
+  if (counter < 10 && seconds < 10){
+    return time = `${minutes}:0${seconds}.0${counter}`;
+  } 
+  if (seconds < 10){
+    return time = `${minutes}:0${seconds}.${counter}`;
+  } 
+  if (counter < 10 && seconds >= 10){
+    return time = `${minutes}:${seconds}.0${counter}`;
+  } else {
+    return time = `${minutes}:${seconds}.${counter}`;
+  }
 };
 
 const startTimer = () => {
@@ -44,7 +55,10 @@ const toggleTimer = () => {
 
 const resetTimer = () => {
   stopTimer();
-  time = 0;
+  time = `0:00.00`;
+  counter = 0;
+  seconds = 0;
+  minutes = 0;
   timer.innerHTML = time;
   recordList.innerHTML = 'Past Times:';
 };
