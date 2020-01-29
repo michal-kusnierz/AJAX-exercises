@@ -1,4 +1,4 @@
-let time;
+let time = 0;
 let counter = 0;
 let seconds = 0;
 let minutes = 0;
