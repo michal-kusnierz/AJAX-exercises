@@ -1,5 +1,5 @@
 let time = 0;
-let started = false;
+let started;
 let interval;
 const timer = document.getElementById('timer');
 const startBtn = document.getElementById('start');
@@ -13,13 +13,19 @@ const clock = () => {
 
 const startTimer = () => {
   interval = setInterval(clock, 10);
-  startBtn.removeEventListener('click',startTimer);
-  startBtn.addEventListener('click', stopTimer);
+  started = true;
 }
 
 const stopTimer = () => {
   clearInterval(interval);
-  startBtn.addEventListener('click', startTimer);
+  started = false;
 }
 
-startBtn.addEventListener('click', startTimer);
+const toggleTimer = () => {
+  if (!started) {
+    startTimer()
+  } else {
+    stopTimer()
+  }
+}
+startBtn.addEventListener('click', toggleTimer);
