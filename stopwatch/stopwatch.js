@@ -9,17 +9,17 @@ const recordBtn = document.getElementById('record');
 const clock = () => {
   time++;
   timer.innerHTML = time;
-}
+};
 
 const startTimer = () => {
   interval = setInterval(clock, 10);
   started = true;
-}
+};
 
 const stopTimer = () => {
   clearInterval(interval);
   started = false;
-}
+};
 
 const toggleTimer = () => {
   if (!started) {
@@ -27,5 +27,5 @@ const toggleTimer = () => {
   } else {
     stopTimer()
   }
-}
+};
 startBtn.addEventListener('click', toggleTimer);
