@@ -5,6 +5,7 @@ const timer = document.getElementById('timer');
 const startBtn = document.getElementById('start');
 const resetBtn = document.getElementById('reset');
 const recordBtn = document.getElementById('record');
+const recordList = document.getElementById('record_list');
 
 const clock = () => {
   time++;
@@ -35,5 +36,12 @@ const resetTimer = () => {
   timer.innerHTML = time;
 };
 
+const recordTimer = () => {
+  let record = document.createElement('li');
+  record.textContent = time + ' ms';
+  recordList.appendChild(record);
+};
+
 startBtn.addEventListener('click', toggleTimer);
 resetBtn.addEventListener('click', resetTimer);
+recordBtn.addEventListener('click', recordTimer);
