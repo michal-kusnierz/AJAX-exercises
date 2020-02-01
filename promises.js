@@ -22,13 +22,12 @@ const promise = new Promise(function(resolve, reject) {
 promise.then(function(val){ //val represents the fulfillment value
   console.log(val);         //logs "success!" since promise resolved
 
-}).catch(function(val){     //val represents the rejection value
+},function(val){          //rejection callback
   console.log(val);         //doesn't occur since promise never rejected
 
 });
 
 /*
-The resolve function can take in any object as an argument, 
-but one common practice is to pass in a Error object 
-because it provides a more detailed error report.
+The then() method can be called with a success callback and a failure callback 
+as an alternative to using the then() and catch() methods. 
 */
