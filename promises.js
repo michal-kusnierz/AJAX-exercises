@@ -2,6 +2,7 @@ const promiseBtn = document.getElementById('promiseBtn');
 
 const promiseFun = () => {
   const promise = new Promise((resolve, reject) => {
+    promiseBtn.innerHTML='waiting...';
     setTimeout(function(){
       const val = Math.random();
       if (val > 0.5){
