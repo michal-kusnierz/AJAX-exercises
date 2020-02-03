@@ -1,27 +1,26 @@
 /*
-The Promise.race() method takes in an array of promises 
-and takes the result of the promise that rejects or resolves the fastest.
+Promise.race() method used to limit the amount of time a Promise has to resolve:
 */
 
-const promise1 = new Promise((resolve,reject)=>{
+const promiseResolveTenSeconds = new Promise((resolve,reject)=>{
     setTimeout(()=>{
-        resolve("promise1 finished in two seconds");
-    },2000) //returns a resolved promise after 2 seconds
+        resolve("finished in ten seconds");
+    },10000) //returns a resolved promise after 2 seconds
 });
 
-const promise2 = new Promise((resolve,reject)=>{
+const promiseRejectFiveSeconds = new Promise((resolve,reject)=>{
     setTimeout(()=>{
-        resolve("promise2 finished in five seconds");
-    },5000) //returns a resolved promise after 5 seconds
+        reject("error: promise took longer than 5 seconds to resolve");
+    },5000) //returns a rejected promise after 5 seconds
 });
 
 
-Promise.race([promise1,promise2]).then((result)=>{ 
+Promise.race([promiseResolveTenSeconds,promiseRejectFiveSeconds]).then((result)=>{ 
 
-    console.log(result) // logs "finished in two seconds" because promise1 resolved first
+    console.log(result) // never occurs because promiseRejectFiveSeconds rejected
 
 }).catch((error)=>{
 
-    console.log(error)  
+    console.log(error)  // logs "error: promise took longer than 5 seconds to resolve"
 
 });
