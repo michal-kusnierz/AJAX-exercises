@@ -1,17 +1,22 @@
 /*
-Returning another Promise within a then() callback 
-will cause the then() method to return the returned Promise.
+The Promise.all() method is used to process multiple Promises at the same time. 
+The method takes in an array of Promises and then waits for them to all to resolve. 
+Once they have all finished resolving, an array of results can be obtained 
+by using the then() method. 
+If any of the Promises reject, then the Promise.all() method will return the first rejected Promise.
 */
 
-const promise = Promise.resolve("hello");
+const promise1 = Promise.resolve('hello'); 
+const promise2 = Promise.resolve({age:2,height:188}) 
+const promise3 = 42; //normal values work with Promise.all() too
 
-const promise2 = promise.then((result)=>{ 
-    console.log(result) //logs "hello"
-    return Promise.resolve("12345") 
-                            //causes then() to return a promise with a fulfillment value of "12345"
 
-});
+Promise.all([promise1,promise2,promise3]).then(function(result) { 
 
-promise2.then((result)=>{
-    console.log(result);    //logs "12345"
+    console.log(result) //logs the array ["hello",{age:2,height:188},42]
+
+}).catch(function(error){
+
+    console.log(error) 
+
 });
