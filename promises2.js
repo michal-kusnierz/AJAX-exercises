@@ -1,16 +1,27 @@
 /*
-Notice how Promise.all() method call rejects 
-when one of the Promises that it is processing rejects:
+The Promise.race() method takes in an array of promises 
+and takes the result of the promise that rejects or resolves the fastest.
 */
 
-const promise1 = Promise.resolve("hello");
-const promise2 = Promise.resolve({ age: 2, height: 188 });
-const promise3 = Promise.reject("failure."); //rejected promise
+const promise1 = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve("promise1 finished in two seconds");
+    },2000) //returns a resolved promise after 2 seconds
+});
 
-Promise.all([promise1, promise2, promise3])
-  .then(result => {
-    console.log(result); //doesn't occur since promise3 rejected
-  })
-  .catch(error => {
-    console.log(error); //logs 'failure.'
-  });
+const promise2 = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve("promise2 finished in five seconds");
+    },5000) //returns a resolved promise after 5 seconds
+});
+
+
+Promise.race([promise1,promise2]).then((result)=>{ 
+
+    console.log(result) // logs "finished in two seconds" because promise1 resolved first
+
+}).catch((error)=>{
+
+    console.log(error)  
+
+});
