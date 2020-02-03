@@ -1,16 +1,25 @@
 /*
-Promise results can be transformed by calling the return statement within the then() callback. 
-This will cause the then() method to return a new Promise with the transformed result.
+Several transforms can be chained together using multiple then() method calls.
 */
 
-const promise = Promise.resolve("hello");
+const promise = Promise.resolve([1,2,3,4]);
 
-const promise2 = promise.then((result)=>{ 
+promise.then((result)=>{ 
     console.log(result) //logs "hello"
-    return result + " world" //adds " world" to the result and sets this as the new fulfillment value of promise2
-});
+    return result.map(x => x * x) //squares each value in the array
 
-promise2.then((result)=>{
-    console.log(result); //logs "hello world"
-});
+}).then(function(result2){
+  console.log(result2) //logs [1,4,9,16]
+  return result2.filter( x => x > 10); //filters out elements that are not larger than 10
 
+}).then(function(result3){
+  console.log(result3) //logs [16]
+  return result3.toString() + "!!"; //converts result3 to a string and adds "!!"
+
+}).then(function(result4){
+  console.log(result4) //logs "16!!"
+  return result4;  //returns a promise with "16!!" as the fulfillment value
+
+}).catch(function(error){
+  console.log(error)
+});
