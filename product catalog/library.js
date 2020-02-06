@@ -2,14 +2,15 @@
 
   const myLibrary = () => {
 
-      //execute code here
+    //execute code here
+    const catalog = createRandomCatalog(100);
 
-      return {
-          searchProductById: searchProductById,
-          searchProductsByPrice: searchProductsByPrice,
-          searchProductsByType: searchProductsByType,
-          searchAllProducts: searchAllProducts
-      }
+    return {
+        searchProductById: searchProductById,
+        searchProductsByPrice: searchProductsByPrice,
+        searchProductsByType: searchProductsByType,
+        searchAllProducts: searchAllProducts
+    }
 
       //function definitions go here
     const createRandomProduct = () => {
