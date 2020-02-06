@@ -13,4 +13,35 @@ const createTableHeader = tableId => {
   tableHeaderRow.appendChild(th3);
   tableHeaderRow.appendChild(th4);
   document.getElementById(tableId).appendChild(tableHeaderRow);
-}
+};
+
+const updateTable = (tableId,productArray) => {
+  const tableBody = document.getElementById(tableId);
+  //reset table
+  while (tableBody.hasChildNodes()) {   
+      tableBody.removeChild(tableBody.firstChild);
+  }
+  //create table header
+  createTableHeader(tableId);
+  //populate table rows
+  for (i = 0; i < productArray.length; i++) {
+      const tr = document.createElement('TR');
+      const td1 = document.createElement('TD');
+      const td2 = document.createElement('TD');
+      const td3 = document.createElement('TD');
+      const td4 = document.createElement('button');
+
+      td4.addEventListener('click',function(){
+          
+      });
+      td1.appendChild(document.createTextNode(productArray[i].id));
+      td2.appendChild(document.createTextNode(productArray[i].type));
+      td3.appendChild(document.createTextNode(productArray[i].price));
+      td4.appendChild(document.createTextNode("Examine"));
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      tableBody.appendChild(tr);
+  }  
+};
