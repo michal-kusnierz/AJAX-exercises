@@ -45,3 +45,7 @@ const updateTable = (tableId,productArray) => {
       tableBody.appendChild(tr);
   }  
 };
+
+api.searchAllProducts().then((value) => {
+  updateTable('allTable',value);
+});
