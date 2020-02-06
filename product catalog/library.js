@@ -20,7 +20,7 @@
   
       return {price:price, type:type};                
     }
-    
+
     const createRandomCatalog = num => {
       const catalog = [];
       for (let i = 0; i < num; i++){
@@ -54,6 +54,29 @@
           }
           reject("Invalid ID: " + id);
         },1000);
+      });
+    return promise;
+    }
+
+    const searchProductsByType = type => {
+
+      const promise = new Promise((resolve,reject) => {
+        let i = 0;
+        const typeArray = [];
+        const possibleTypes = ['Electronics','Book','Clothing','Food'];
+        if(!possibleTypes.includes(type)){
+            reject("Invalid Type: " + type)
+        } else {
+          setTimeout(() => {
+            while (i < catalog.length){
+              if (catalog[i].type == type){
+                  typeArray.push({id:catalog[i].id,price:catalog[i].price,type:catalog[i].type});
+              }
+              i++;
+            }
+            resolve(typeArray);
+          },1000);
+        }
       });
     return promise;
     }
