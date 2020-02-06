@@ -28,6 +28,16 @@
       }
       return catalog;
     }
+    const searchAllProducts = () => {
+      const promise = new Promise((resolve, reject) => {
+  
+          setTimeout(() => {
+              resolve(catalog);
+          },1000);
+  
+      });
+      return promise;
+  }
   }
 
   if(typeof(window.api) === 'undefined'){
