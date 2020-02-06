@@ -20,6 +20,7 @@
   
       return {price:price, type:type};                
     }
+    
     const createRandomCatalog = num => {
       const catalog = [];
       for (let i = 0; i < num; i++){
@@ -28,6 +29,7 @@
       }
       return catalog;
     }
+
     const searchAllProducts = () => {
       const promise = new Promise((resolve, reject) => {
   
@@ -37,7 +39,25 @@
   
       });
       return promise;
-  }
+    }
+
+    const searchProductById = id => {
+
+      const promise = new Promise((resolve,reject) => {
+        let i = 0;
+        setTimeout(() => {
+          while (i < catalog.length){
+            if (catalog[i].id == id){                        
+                resolve({id:id,price:catalog[i].price,type:catalog[i].type});
+            }
+            i++;
+          }
+          reject("Invalid ID: " + id);
+        },1000);
+      });
+    return promise;
+    }
+
   }
 
   if(typeof(window.api) === 'undefined'){
