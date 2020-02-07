@@ -1,22 +1,24 @@
-// json() method is used to extract a JSONobject:
-fetch("https://jsonplaceholder.typicode.com/todos/1")
+//fetching a bad url
+fetch("https://jsonplaceholder.typicode.com/bad_url/1")
   .then(result => {
-    return result.json(); 
-    //returns a promise containing the JSON data extracted from the Response object
+    //contains a Response object
+    console.log(result);
+    if (result.ok) {
+      //returns true if the Response status is within 200-299
+      return result.text();
+    } else {
+      //if the fetch request had problems
+      console.log(result.status); 
+      //logs 404
+      return Promise.reject(result.status); 
+      //returns a rejected promise if the fetch request had problems
+    }
   })
   .then(result => {
-    console.log(result);
-    //logs Object {completed: false, id: 1, title: "delectus aut autem", userId: 1}
-  });
-
-
-// text() method is used to extract a text string:
-fetch("https://jsonplaceholder.typicode.com/todos/1")
-  .then(result => {
-    return result.text(); 
-    //returns a promise containing the text data extracted from the Response object
+    console.log(result); 
+    //doesn't occur since a rejected promise was returned earlier
   })
-  .then(result => {
-    console.log(result);
-    //logs "{completed: false, id: 1, title: "delectus aut autem", userId: 1}"
+  .catch(err => {
+    console.log("Error: " + err); 
+    //logs "Error: 404", handles the rejected promise
   });
