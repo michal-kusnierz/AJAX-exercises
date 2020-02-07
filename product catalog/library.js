@@ -1,17 +1,7 @@
-((window)=>{
+(function(window){
 
-  const myLibrary = () => {
-
-    //execute code here
-    const catalog = createRandomCatalog(100);
-
-    return {
-        searchProductById: searchProductById,
-        searchProductsByPrice: searchProductsByPrice,
-        searchProductsByType: searchProductsByType,
-        searchAllProducts: searchAllProducts
-    }
-
+  const catalog = [];
+  
       //function definitions go here
     const createRandomProduct = () => {
       const typeArray = ['Electronics','Book','Clothing','Food'];
@@ -22,7 +12,7 @@
     }
 
     const createRandomCatalog = num => {
-      const catalog = [];
+      // const catalog = [];
       for (let i = 0; i < num; i++){
           const obj = createRandomProduct();
           catalog.push({id:i,price:obj.price,type:obj.type});
@@ -102,8 +92,21 @@
     return promise;
     }
 
+    function myLibrary() {
+
+    //execute code here
+    const catalog = createRandomCatalog(100);
+
+    return {
+        searchProductById: searchProductById,
+        searchProductsByPrice: searchProductsByPrice,
+        searchProductsByType: searchProductsByType,
+        searchAllProducts: searchAllProducts
+    }
+  
   }
 
+  
   if(typeof(window.api) === 'undefined'){
       window.api = myLibrary();
   }
