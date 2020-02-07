@@ -1,31 +1,9 @@
-//Question 8 Code
+//Question 9 Code
 
-function timedReject(val){
-  var promise = new Promise(function(resolve,reject){
-      setTimeout(function(){
-          reject(val)
-      },2000);
-  });
-  return promise;
-}
-
-function timedResolve(val){
-  var promise = new Promise(function(resolve,reject){
-      setTimeout(function(){
-          resolve(val)
-      },3000);
-  });
-  return promise;
-}
-
-var myPromise1 = Promise.resolve("okay");
-var myPromise2 = timedReject("bad")
-var myPromise3 = timedResolve("good")
-
-Promise.race([myPromise1,myPromise2,myPromise3]).then(function(val){
-  console.log(val);
-}).catch(function(err){
-  console.log("Error: " + err)
-})
-
-// okay
+/*
+Which of the following statements are true regarding Promises and Continuation Passing Style(CPS) when chaining asynchronous operations? Select all that apply.
+- Promises require a third party library to be used while CPS does not because it is built into JavaScript
+- It is easier to handle errors with Promises than with CPS     // correct
+- Promises do not have to use callback functions while CPS does
+- Promises are easier to maintain and read than CPS             // incorrect
+*/
