@@ -53,6 +53,22 @@ const updateExaminedText = product => {
   document.getElementById("productText").innerHTML = outputString;
 };
 
+const getIntersection = (arrA,arrB,searchedId) => {
+
+  const samePrice = arrA;
+  const sameType = arrB;
+  const similarArray = [];
+  samePrice.forEach((obj1) => {
+      sameType.forEach((obj2) => {
+          if(obj1.id == obj2.id && obj1.id != searchedId)
+              similarArray.push(obj1);     
+      });
+  });
+
+  return similarArray;
+
+}
+
 api.searchAllProducts().then((value) => {
   updateTable('allTable',value);
 });
