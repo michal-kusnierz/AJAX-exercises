@@ -84,3 +84,7 @@ const processSearch = searchId => {
 api.searchAllProducts().then((value) => {
   updateTable('allTable',value);
 });
+
+document.getElementById("searchInput_btn").addEventListener('click', () => {
+  processSearch(document.getElementById('searchInput').value);
+});
