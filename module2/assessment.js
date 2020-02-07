@@ -1,15 +1,24 @@
-//Question 4 Code
+//Question 5 Code
 
-var myPromise = Promise.resolve(["hello","world","goodbye"]);
+function promiseSquare(val){
+  return Promise.resolve(val * val);
+}
 
-var anotherPromise = myPromise.then(function(val){
-    return val.map( x => x + "!"); 
+function promiseDouble(val){
+  return Promise.resolve(val + val);
+}
+
+var myPromise = Promise.resolve(1);
+
+myPromise.then(function(val){
+  var temp = val + 4;
+  return promiseSquare(temp);
+
 }).then(function(val){
-    return val[2] + " " + val[1];
+  return promiseDouble(val);
+
+}).then(function(val){
+  console.log(val + 1);
 });
 
-anotherPromise.then(function(val){
-    console.log(val + '?');
-})
-
-// goodbye! world!?
+// 51
