@@ -66,8 +66,20 @@ const getIntersection = (arrA,arrB,searchedId) => {
   });
 
   return similarArray;
+};
 
-}
+const processSearch = searchId => {
+  api.searchProductById(searchId).then((val) => {
+      return Promise.all([api.searchProductsByPrice(val.price,50),api.searchProductsByType(val.type),val]);
+  }).then((val) => {
+      let similarArray = getIntersection(val[0],val[1],val[2].id);
+      updateExaminedText(val[2]);
+      updateTable('similarTable',similarArray);
+  }).catch((val) => {
+      console.log(val);
+  });
+};
+
 
 api.searchAllProducts().then((value) => {
   updateTable('allTable',value);
