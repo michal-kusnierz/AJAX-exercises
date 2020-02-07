@@ -1,9 +1,15 @@
-//Question 3 Code
+//Question 4 Code
 
-var myPromise = Promise.reject("123");
+var myPromise = Promise.resolve(["hello","world","goodbye"]);
 
-myPromise.then(function(err){
-    console.log("error: " + err);
+var anotherPromise = myPromise.then(function(val){
+    return val.map( x => x + "!"); 
+}).then(function(val){
+    return val[2] + " " + val[1];
 });
 
-// no console output
+anotherPromise.then(function(val){
+    console.log(val + '?');
+})
+
+// goodbye! world!?
