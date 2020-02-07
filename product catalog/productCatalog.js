@@ -46,6 +46,13 @@ const updateTable = (tableId,productArray) => {
   }  
 };
 
+const updateExaminedText = product => {
+  const outputString = "Product Id: " + product.id;
+  outputString += "<br> Price: " + product.price;
+  outputString += "<br> Type: " + product.type;
+  document.getElementById("productText").innerHTML = outputString;
+};
+
 api.searchAllProducts().then((value) => {
   updateTable('allTable',value);
 });
