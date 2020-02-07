@@ -1,24 +1,22 @@
-//fetching a bad url
-fetch("https://jsonplaceholder.typicode.com/bad_url/1")
-  .then(result => {
-    //contains a Response object
-    console.log(result);
-    if (result.ok) {
-      //returns true if the Response status is within 200-299
-      return result.text();
-    } else {
-      //if the fetch request had problems
-      console.log(result.status); 
-      //logs 404
-      return Promise.reject(result.status); 
-      //returns a rejected promise if the fetch request had problems
-    }
+//this init object specifies the method, headers, mode and body of the request
+const initObject = {
+  method: 'POST',
+  headers: new Headers(),
+  mode: 'cors',
+  body: "{}" 
+}
+
+//fetch() method used with an URL endpoint and an init object
+fetch("https://jsonplaceholder.typicode.com/posts",initObject) 
+  .then(result => { //result contains a Response object
+     return result.json() //returns a promise containing JSON data extracted from the Response object
+
   })
   .then(result => {
-    console.log(result); 
-    //doesn't occur since a rejected promise was returned earlier
+     console.log(result);
+     //logs Object {id: 101}
+
   })
   .catch(err => {
-    console.log("Error: " + err); 
-    //logs "Error: 404", handles the rejected promise
-  });
+      console.log(err);
+});
