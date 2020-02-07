@@ -1,19 +1,11 @@
-//Question 1 Code
+//Question 2 Code
 
-var myPromise = new Promise(function(resolve,reject){
-  var value = {age:20,id:123};
-
-  if (value.age > 18){
-      resolve(value);
-  }
-  else
-      reject(Error("age < 18"));
-});
+var myPromise = Promise.reject("hello");
 
 myPromise.then(function(val){
-   console.log(val.id);
-}).catch(function(err){
-   console.log(err.message);
-});  
+    console.log("success: " + val);
+},function(err){
+    console.log("error: " + err);
+});
 
-// answer: output is '123'
+// answer: 'error: hello'
