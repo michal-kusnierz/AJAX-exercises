@@ -32,8 +32,9 @@ const updateTable = (tableId,productArray) => {
     const td4 = document.createElement('button');
 
     td4.addEventListener('click',() => {
-        
+      processSearch(td1.innerHTML);
     });
+
     td1.appendChild(document.createTextNode(productArray[i].id));
     td2.appendChild(document.createTextNode(productArray[i].type));
     td3.appendChild(document.createTextNode(productArray[i].price));
