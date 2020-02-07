@@ -1,37 +1,31 @@
-//Question 7 Code
+//Question 8 Code
 
-function promiseSquare(val){
-  return Promise.resolve(val * val);
+function timedReject(val){
+  var promise = new Promise(function(resolve,reject){
+      setTimeout(function(){
+          reject(val)
+      },2000);
+  });
+  return promise;
 }
 
-function promiseDouble(val){
-  return Promise.resolve(val + val);
+function timedResolve(val){
+  var promise = new Promise(function(resolve,reject){
+      setTimeout(function(){
+          resolve(val)
+      },3000);
+  });
+  return promise;
 }
 
-function filterFunction(val){
-  if ( val > 50)
-      return true;
-  else
-      return false;
-}
+var myPromise1 = Promise.resolve("okay");
+var myPromise2 = timedReject("bad")
+var myPromise3 = timedResolve("good")
 
-var myPromise1 = Promise.resolve(500);
-var myPromise2 = promiseSquare(10);
-var myPromise3 = promiseDouble(20);
-
-Promise.all([myPromise1,myPromise2,myPromise3]).then(function(val){
-  var result = val.filter(filterFunction);
-  return result;
-
-}).then(function(val){
-  var temp = 0;
-  for(var i = 0; i < val.length; i++){
-      temp += val[i]
-  }
-  console.log(temp);
-
+Promise.race([myPromise1,myPromise2,myPromise3]).then(function(val){
+  console.log(val);
 }).catch(function(err){
   console.log("Error: " + err)
-});
+})
 
-// output to the console: 600
+// okay
