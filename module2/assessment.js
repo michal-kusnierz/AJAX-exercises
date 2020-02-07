@@ -1,24 +1,19 @@
-//Question 5 Code
+//Question 6 Code
 
-function promiseSquare(val){
-  return Promise.resolve(val * val);
-}
-
-function promiseDouble(val){
-  return Promise.resolve(val + val);
-}
-
-var myPromise = Promise.resolve(1);
+var myPromise = Promise.resolve(123);
 
 myPromise.then(function(val){
-  var temp = val + 4;
-  return promiseSquare(temp);
-
+    return val - 23; 
 }).then(function(val){
-  return promiseDouble(val);
-
+    return val * 2;
 }).then(function(val){
-  console.log(val + 1);
+    return Promise.reject(100);
+}).then(function(val){
+    return val + 1;
+}).then(function(val){
+    return val + 2;
+}).catch(function(err){
+    console.log("error: " + err)
 });
 
-// 51
+// 100
