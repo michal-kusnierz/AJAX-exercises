@@ -1,22 +1,16 @@
 /* 
-Body
-The body attribute is a JSON string used to send data along with a fetch request. 
-If the body value is an object, it is important to stringify the object 
-that is being sent using JSON.stringify() 
-or it will not process correctly.
+Headers
+The `headers attribute is used to add more information about the resource being fetched 
+or the client doing the fetching. 
+A Headers object can be created using the new Headers() constructor 
+and individual headers can be added to the Headers object through the append() method.
 
-Get and Head HTTP requests can not have bodies.
-
-Notice how an init object with a body attribute representing an object can be created:
+Notice how a new Headers object is created 
+and assigned to the headers attribute of the init object:
 */
-
-const myBody = {
-    id: 12345,
-    name: 'abc',
-    age: 21
-};
-
+const myHeaders = new Headers();
+myHeaders.append('Content-Type', 'application/json');
 
 const initObject = {
-    body: JSON.stringify(myBody)
+    headers: myHeaders
 };
