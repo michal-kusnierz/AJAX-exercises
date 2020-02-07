@@ -1,11 +1,9 @@
-//Question 2 Code
+//Question 3 Code
 
-var myPromise = Promise.reject("hello");
+var myPromise = Promise.reject("123");
 
-myPromise.then(function(val){
-    console.log("success: " + val);
-},function(err){
+myPromise.then(function(err){
     console.log("error: " + err);
 });
 
-// answer: 'error: hello'
+// no console output
