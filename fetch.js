@@ -1,19 +1,30 @@
-const URL = 'https://jsonplaceholder.typicode.com/posts'
+/*
+The fetch() method can take in a Request object instead of an URL and an init object. 
+The Request constructor takes in the same parameters as the fetch() method: 
+an URL and an optional init object. 
 
-const body = {id:'123', title:'abc'};
+Request objects are used because they make Fetch requests a bit cleaner 
+and also offer a bit more control.
+*/
 
 const initObject = {
     method: 'POST',
-    body: JSON.stringify(body)
+    headers: new Headers(),
+    mode: 'cors',
+    body: "{}" 
 };
 
-fetch(URL,initObject)
-    .then(result =>{
-        return result.json();
-    })
-    .then(result => {
-        console.log(result);
-    })
-    .catch(err => {
-        console.log(err);
-    });
+//creates a new request object using an URL and an init object
+const request = new Request("https://jsonplaceholder.typicode.com/posts",initObject)
+
+//fetch() method used with a request
+fetch(request).then(result => {     
+    //result contains a Response object
+    return result.json() 
+    //returns a Promise containing JSON data extracted from the Response object
+}).then(result => {
+    console.log(result);
+    //logs Object {id: 101}
+}).catch(err => {
+    console.log(err);
+});
