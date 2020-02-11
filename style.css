@@ -14,3 +14,8 @@ ul{
 a{
   text-decoration-line: none;
 }
+
+#promiseDisplay{
+  visibility: hidden;
+  margin: 16px 0;
+}
