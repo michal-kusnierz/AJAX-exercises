@@ -1,4 +1,4 @@
-document.getElementById("analyseBtn").addEventListener("click", analyse);
+const button = document.getElementById("analyseBtn");
 const output = document.getElementById("analyseOutput");
 
 let reqBody = {
@@ -45,3 +45,5 @@ const analyse = () => {
       output.innerHTML = "";
     });
 };
+
+button.addEventListener("click", analyse);
