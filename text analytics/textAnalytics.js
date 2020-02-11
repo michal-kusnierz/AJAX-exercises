@@ -16,7 +16,7 @@ const analyse = () => {
 
   const myHeader =  new Headers({
     'Content-Type': 'application/json',
-    'Ocp-Apim-Subscription-Key': 'my_api_key'
+    'Ocp-Apim-Subscription-Key': 'ec9669c1f31942f582e0fa03436b8595'
   });
 
   const initObject = {
@@ -25,7 +25,7 @@ const analyse = () => {
     headers: myHeader
   };
 
-  const request = new Request('https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases', initObject);
+  const request = new Request('https://westcentralus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases', initObject);
 
   fetch(request)
     .then(response => {
