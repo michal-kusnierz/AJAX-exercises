@@ -1,4 +1,5 @@
 document.getElementById("analyseBtn").addEventListener("click", analyse);
+const output = document.getElementById("analyseOutput");
 
 let reqBody = {
   "documents": [
@@ -23,4 +24,24 @@ const initObject = {
 
 const request = new Request('https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases', initObject);
 
-const analyse = () => {};
+const analyse = () => {
+  fetch(request)
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return Promise.reject(new Error(response.statusText));
+      }
+    })
+    .then(response => {
+      output.innerHTML =
+        "Total Key Phrases: " +
+        response.documents[0].keyPhrases.length +
+        "</br>" +
+        response.documents[0].keyPhrases;
+    })
+    .catch(err => {
+      console.log(err);
+      output.innerHTML = "";
+    });
+};
