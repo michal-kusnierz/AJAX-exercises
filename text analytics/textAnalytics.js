@@ -1,4 +1,5 @@
 const button = document.getElementById("analyseBtn");
+const input = document.getElementById("analyseInput");
 const output = document.getElementById("analyseOutput");
 
 let reqBody = {
@@ -6,7 +7,7 @@ let reqBody = {
     {
     "language":"en",
     "id" : 1,
-    "text": document.getElementById("analyseInput").value
+    "text": input.value
     }
   ]
 };
