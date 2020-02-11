@@ -21,4 +21,6 @@ const initObject = {
   headers: myHeader
 };
 
+const request = new Request('https://westus.api.cognitive.microsoft.com/text/analytics/v2.0/keyPhrases', initObject);
+
 const analyse = () => {};
