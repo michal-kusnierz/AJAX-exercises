@@ -10,4 +10,9 @@ let reqBody = {
   ]
 };
 
+const myHeader =  new Headers({
+  'Content-Type': 'application/json',
+  'Ocp-Apim-Subscription-Key': 'my_api_key'
+});
+
 const analyse = () => {};
