@@ -15,4 +15,10 @@ const myHeader =  new Headers({
   'Ocp-Apim-Subscription-Key': 'my_api_key'
 });
 
+const initObject = {
+  method: 'POST',
+  body: JSON.stringify(reqBody),
+  headers: myHeader
+};
+
 const analyse = () => {};
