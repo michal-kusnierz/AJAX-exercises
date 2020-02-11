@@ -8,16 +8,20 @@ body {
   margin: 20px;
 }
 
-h1 {
+h1, h3 {
   background-color: whitesmoke;
-  padding: 20px;
   width: 640px;
 }
-
+h1 {
+  padding: 20px;
+}
+h3 {
+  padding: 5px 20px;
+}
 .analyse__section {
   background-color: burlywood;
   margin: 0;
-  padding: 10px 20px 15px;
+  padding: 10px 20px;
   width: 640px;
 }
 #analyseInput {
@@ -34,4 +38,9 @@ label {
   border: 5px solid whitesmoke;
   border-radius: 5px;
   cursor: pointer;
+}
+#analyseOutput {
+  background-color: whitesmoke;
+  padding: 10px 20px;
+  width: 640px;
 }
