@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Face Analytics</title>
+  </head>
+  <body>
+    <h1>Detect Faces:</h1>
+    <input
+      type="text"
+      name="inputImage"
+      id="inputImage"
+      value="https://upload.wikimedia.org/wikipedia/commons/c/c3/RH_Louise_Lillian_Gish.jpg"
+    />
+    <button id="processImage">Analyze face</button><br /><br />
+    <div id="wrapper" style="width:1020px; display:table;">
+      <div id="imageDiv" style="width:420px; display:table-cell;">
+        Source image:<br /><br />
+        <img id="sourceImage" width="400" />
+      </div>
+    </div>
+    <div>
+      <h2>Attributes</h2>
+      <p id="age">Age:</p>
+      <p id="gender">Gender:</p>
+    </div>
+    <script type="text/javascript" src="./face.js"></script>
+  </body>
+</html>
