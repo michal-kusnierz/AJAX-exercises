@@ -20,13 +20,13 @@ function* genFunc() {
   return "finished";
 }
 
-var genObject = genFunc(); //creates a generator object called genObject
+var genObject = genFunc();
 
-var a = genObject.next(); // Object {value: 'a', done: false}
-//console.log("started");
+var a = genObject.next(); 
+var b = genObject.next(); 
+var c = genObject.next(); 
 
-var b = genObject.next(); // Object {value: undefined, done: false}
-//console.log("passed first yield"); 
+var d = genObject.next(); // Object {value: "finished", done: true} <-- value property takes the return value of genFunc()
+//console.log("passed third yield");
 
-var c = genObject.next(); // Object {value: 123, done: false}
-//console.log("passed second yield");
+var e = genObject.next(); // Object {value: undefined, done: true} <-- additional next() calls return this
