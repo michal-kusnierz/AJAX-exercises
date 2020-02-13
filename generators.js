@@ -1,10 +1,9 @@
 /*
-Yield Keyword
+Return Keyword
 
-The yield keyword is used to pause the generator. 
-The yield keyword may also be used to receive input and send output from the generator.
+Generator Functions have an optional return value. 
+Omitting the return value is equivalent to returning an undefined value.
+The return value of Generator functions is often left unused.
 */
 
-yield 'a'; //pauses the generator and sends out a value of 'a'
-yield;     //pauses the generator and sends out an undefined value
-yield 123; //pauses the generator and sends out a value of 123
+return "finished"; //return value of "finished"
