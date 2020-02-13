@@ -1,18 +1,10 @@
 /*
-Generators are functions that can be paused and resumed. 
-Generators can send out values when pausing and take in values when resuming.
+Yield Keyword
 
-Generators are important because they allow asynchronous functions to written
- like normal synchronous functions.
+The yield keyword is used to pause the generator. 
+The yield keyword may also be used to receive input and send output from the generator.
 */
 
-
-// Generator function syntax:
-function* genFunc() {
-  yield 'a';
-  yield;
-  yield 123;
-      
-  return "finished";
-}
-
+yield 'a'; //pauses the generator and sends out a value of 'a'
+yield;     //pauses the generator and sends out an undefined value
+yield 123; //pauses the generator and sends out a value of 123
