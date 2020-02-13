@@ -1,13 +1,15 @@
-// Question 2 Code
+// Question 6 Code
 
-fetch("https://jsonplaceholder.typicode.com/todos/15").then(function(val){
-    return val.json();
+var initObject = { method: 'GET',
+                   mode: 'same-origin',
+                   headers: new Headers()};
+
+fetch("https://jsonplaceholder.typicode.com/todos/15",initObject).then(function(val){
+    return val.text();
 }).then(function(val){
-    console.log([val.title]);
+    console.log(val);
 }).catch(function(err){
-    console.log("Error")
-});;
+    console.log(err)
+});
 
-
-// answer: [INSERT 1] = val.json(),[INSERT 2] = val.title
-// → the code output "ab voluptatum amet voluptas"
+// answer: replace mode 'same-origin' with 'cors'
