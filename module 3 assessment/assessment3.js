@@ -1,15 +1,16 @@
-// Question 6 Code
+// Question 7 Code
 
-var initObject = { method: 'GET',
-                   mode: 'same-origin',
-                   headers: new Headers()};
-
-fetch("https://jsonplaceholder.typicode.com/todos/15",initObject).then(function(val){
-    return val.text();
+fetch("https://jsonplaceholder.typicode.com/comments/12").then(function(val){
+    return val.json();
 }).then(function(val){
-    console.log(val);
+    var postId = val.postId;
+    return fetch("https://jsonplaceholder.typicode.com/posts/"  + postId);
+}).then(function(val){
+    return val.json();
+}).then(function(val){
+    console.log(val.body);
 }).catch(function(err){
-    console.log(err)
+    console.log("Error")
 });
 
-// answer: replace mode 'same-origin' with 'cors'
+// answer: console logs: et iusto sed quo iure...
