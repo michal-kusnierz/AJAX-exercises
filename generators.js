@@ -1,9 +1,13 @@
-/*
-Return Keyword
+function* genFunc() {
+  console.log("started");
+  yield 'a';
+  console.log("passed first yield");
+  yield;
+  console.log("passed second yield");
+  yield 123;
+  console.log("passed third yield");
+      
+  return "finished";
+}
 
-Generator Functions have an optional return value. 
-Omitting the return value is equivalent to returning an undefined value.
-The return value of Generator functions is often left unused.
-*/
-
-return "finished"; //return value of "finished"
+var genObject = genFunc(); //creates a generator object called genObject
