@@ -1,32 +1,29 @@
-/* Generator functions are initially paused and the first call to next()
- starts the Generator function. 
-The Generator function then runs until it hits the first yield keyword and then pauses.
- Subsequent calls to next()  will resume the Generator function until the next yield keyword appears.
+/* Throwing Errors from within a Generator Function.
 
-The next() method returns an object with two properties:
-- done - a boolean indicating whether the Generator function has processed 
-all of the yield statements or has already returned. 
-- value - the value associated with the most recent yield statement. */
+The next() call that throws the error will return an undefined value
+ and additional yield statements after the error are ignored. 
+Additional next() calls after the error will also return undefined values.
+ */
 
 function* genFunc() {
-  console.log("started");
+
   yield 'a';
-  console.log("passed first yield");
-  yield;
-  console.log("passed second yield");
-  yield 123;
-  console.log("passed third yield");
-      
-  return "finished";
+  yield 'b';
+  throw new Error("error thrown by genFunc()!");
+  yield 'c';
+  yield 'd';
+
 }
 
 var genObject = genFunc();
 
-var a = genObject.next(); 
-var b = genObject.next(); 
-var c = genObject.next(); 
-
-var d = genObject.next(); // Object {value: "finished", done: true} <-- value property takes the return value of genFunc()
-//console.log("passed third yield");
-
-var e = genObject.next(); // Object {value: undefined, done: true} <-- additional next() calls return this
+try{
+  var a = genObject.next();   // Object {value: 'a', done: false}
+  var b = genObject.next();   // Object {value: 'b', done: false}
+  var c = genObject.next();   // undefined <-- since an uncaught error was thrown, the generator function terminated
+                              //console.log("error thrown by genFunc()!") occurs
+  var d = genObject.next(); // undefined <-- other yield statements are ignored after the error
+}
+catch(e){
+console.log(e.message);
+}
