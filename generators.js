@@ -1,29 +1,30 @@
-/* Throwing Errors from within a Generator Function.
+/* 
+yield* keyword is used to call another Generator function within a Generator function.
+*/
 
-The next() call that throws the error will return an undefined value
- and additional yield statements after the error are ignored. 
-Additional next() calls after the error will also return undefined values.
- */
-
-function* genFunc() {
-
+function* genFuncA() {
   yield 'a';
   yield 'b';
-  throw new Error("error thrown by genFunc()!");
   yield 'c';
-  yield 'd';
 
+  return "done with genFuncA()!"
 }
 
-var genObject = genFunc();
+function* genFuncB(){
+  yield 1;
+  yield* genFuncA();          // contains iterable [a,b,c]
+  yield 2;
+  yield 3;
 
-try{
-  var a = genObject.next();   // Object {value: 'a', done: false}
-  var b = genObject.next();   // Object {value: 'b', done: false}
-  var c = genObject.next();   // undefined <-- since an uncaught error was thrown, the generator function terminated
-                              //console.log("error thrown by genFunc()!") occurs
-  var d = genObject.next(); // undefined <-- other yield statements are ignored after the error
+  return "done with genFuncB()!";
 }
-catch(e){
-console.log(e.message);
-}
+
+var genObject = genFuncB();
+
+var a = genObject.next();     //Object {value: 1, done: false}
+var b = genObject.next();     //Object {value: 'a', done: false}
+var c = genObject.next();     //Object {value: 'b', done: false}
+var d = genObject.next();     //Object {value: 'c', done: false}
+var e = genObject.next();     //Object {value: 2, done: false}
+var f = genObject.next();     //Object {value: 3, done: false}
+var g = genObject.next();     //Object {value: "done with genFuncB()!", done: true}
