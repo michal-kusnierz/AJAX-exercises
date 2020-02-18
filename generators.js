@@ -1,19 +1,25 @@
-/* 
-The yield* statement can be used on any iterable in addition to Generator functions.
+/*
+next() can also be used to send values back into Generator functions. 
+This is accomplished by passing a value into the next() method call as an argument. 
+The value that is passed into the next() method call eventually 
+becomes the return value of the most recent yield statement.
+ Since the first next() call starts the Generator function, 
+ any value that gets passed into it will be ignored.
 */
 
-function* genFunc(){
-  yield 1;
-  yield* [2,3,4]; //the array [2,3,4] is iterable
-  yield 5;
+ function* genFunc(){
+  var a = yield;
+  console.log(a); //a = 1
+  var b = yield;  
+  console.log(b); //b = 2
+  var c = yield;
+  console.log(c); //c = 3
 
 }
 
 var genObject = genFunc();
 
-var a = genObject.next(); //Object {value: 1, done: false}
-var b = genObject.next(); //Object {value: 2, done: false}
-var c = genObject.next(); //Object {value: 3, done: false}
-var d = genObject.next(); //Object {value: 4, done: false}
-var e = genObject.next(); //Object {value: 5, done: false}
-var f = genObject.next(); //Object {value: undefined, done: true}
+genObject.next(0); //starts genFunc(), the value inside the next() call is ignored
+genObject.next(1); //sends a value of 1 to genFunc()
+genObject.next(2); //sends a value of 2 to genFunc()
+genObject.next(3); //sends a value of 3 to genFunc()
