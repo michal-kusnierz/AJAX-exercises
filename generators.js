@@ -1,31 +1,26 @@
 /*
-Using Generators with Asynchronous Functions
+recursive method for iterating through promises
 
-~ES6 syntax
+A recursive function may be used to iterate through yielded Promises
+ and return their fulfillment values back to the Generator function.
+
 */
-function* genFunc() {
-  var post1title = yield fetch("https://jsonplaceholder.typicode.com/posts/1");
-  console.log(post1title);
-  var post2title = yield fetch("https://jsonplaceholder.typicode.com/posts/2");
-  console.log(post2title);
-}
+const run = genFunc => {
+  const genObject = genFunc(); //creating a generator object
 
-var genObject = genFunc();
+  function iterate(iteration) {
+    //recursive function to iterate through promises
+    if (iteration.done)
+      //stop iterating when done and return the final value wrapped in a promise
+      return Promise.resolve(iteration.value);
+    return Promise.resolve(iteration.value) //returns a promise with its then() and catch() methods filled
+      .then(x => iterate(genObject.next(x))) //calls recursive function on the next value to be iterated
+      .catch(x => iterate(genObject.throw(x))); //throws an error if a rejection is encountered
+  }
 
-var yieldedObject = genObject.next();
-var promise = yieldedObject.value;
-promise
-  .then(val => {
-    return val.json();
-  })
-  .then(val => {
-    var secondYieldedObject = genObject.next(val.title);
-    var secondPromise = secondYieldedObject.value;
-    secondPromise
-      .then(val => {
-        return val.json();
-      })
-      .then(val => {
-        genObject.next(val.title);
-      });
-  });
+  try {
+    return iterate(genObject.next()); //starts the recursive loop
+  } catch (ex) {
+    return Promise.reject(ex); //returns a rejected promise if an exception is caught
+  }
+};
