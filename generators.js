@@ -1,37 +1,31 @@
 /*
 Using Generators with Asynchronous Functions
 
-Generator functions work well with asynchronous functions that return Promises. 
-This is because Generator functions can yield a Promise, 
- process the Promise result asynchronously,
- and then receive the Promise result back. 
-This allows asynchronous code to be written inside generator functions 
- like normal synchronous functions. 
+~ES6 syntax
 */
-
-function* genFunc(){ //looks synchronously written
-
+function* genFunc() {
   var post1title = yield fetch("https://jsonplaceholder.typicode.com/posts/1");
-  console.log(post1title); 
-  //post1title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+  console.log(post1title);
   var post2title = yield fetch("https://jsonplaceholder.typicode.com/posts/2");
   console.log(post2title);
-  //post2title = "qui est esse"
 }
 
-var genObject = genFunc(); //creating generator object
+var genObject = genFunc();
 
-var yieldedObject = genObject.next(); //starting generator and returning first yielded object
-var promise = yieldedObject.value; //getting promise from value property of the yielded object
-promise.then(function(val){ //callback for then() of promise
-return val.json(); //getting json stream from fetch response
-}).then(function(val){ //chaining another then()
-var secondYieldedObject = genObject.next(val.title); //sending title back to generator function
-                                                   //and receiving second yielded object from generator function
-var secondPromise = secondYieldedObject.value; //getting promise from value property of second yielded object
-secondPromise.then(function(val){ //callback for then() of promise
- return val.json();  //getting json stream from fetch response
-}).then(function(val){ //chaining another then()
-genObject.next(val.title); //sending back the second title to the generator function
-})
-})
+var yieldedObject = genObject.next();
+var promise = yieldedObject.value;
+promise
+  .then(val => {
+    return val.json();
+  })
+  .then(val => {
+    var secondYieldedObject = genObject.next(val.title);
+    var secondPromise = secondYieldedObject.value;
+    secondPromise
+      .then(val => {
+        return val.json();
+      })
+      .then(val => {
+        genObject.next(val.title);
+      });
+  });
