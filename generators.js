@@ -1,5 +1,5 @@
 /*
-For...Of statement is used to iterate through a Generator Object
+the spread operator used to iterate through a Generator object:
 */
 
 function* genFunc(){
@@ -11,15 +11,5 @@ function* genFunc(){
   return "finished";
 
 }
-
-for (var x of genFunc()){ //for...of statement
-  console.log(x); 
-}
-// Outputs:
-//'a'
-// undefined
-// 1
-// 2
-// 3
-// 123
-// <-- return value is not outputted
+var arr = [...genFunc()]; //...spread operator
+// arr = ['a',undefined,1,2,3,123]
