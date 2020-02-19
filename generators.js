@@ -1,19 +1,25 @@
 /*
-The next() method can also be used to modify the values sent by the yield statement and send them back.
+For...Of statement is used to iterate through a Generator Object
 */
 
 function* genFunc(){
-  var a = yield 'a';
-  console.log(a); // a = 'a!'
-  var b = yield 'b';  
-  console.log(b); // b = 'B'
-  var c = yield 'c';
-  console.log(c); // c = 'abc'
+  yield 'a';
+  yield;  
+  yield* [1,2,3];
+  yield 123;
+
+  return "finished";
+
 }
 
-var genObject = genFunc();
-
-var w = genObject.next(); //starts genFunc(), w = Object {value: 'a', done: false}
-var x = genObject.next(w.value + '!'); //sends a value of "a!" to genFunc(), x = Object {value: 'b', done: false}
-var y = genObject.next(x.value.toUpperCase()); //sends a value of 'B' to genFunc(), y = Object {value: 'c', done: false}
-var z = genObject.next(w.value + x.value + y.value); //sends a value of 'abc' to genFunc(), z = Object {value: 'undefined', done: true}
+for (var x of genFunc()){ //for...of statement
+  console.log(x); 
+}
+// Outputs:
+//'a'
+// undefined
+// 1
+// 2
+// 3
+// 123
+// <-- return value is not outputted
