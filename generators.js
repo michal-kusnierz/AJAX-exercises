@@ -1,25 +1,37 @@
 /*
-Generator Objects have a throw() method that causes an error to be thrown
- at the most recent yield statement. 
- The throw() method takes in one argument, which is commonly an Error object.
+Using Generators with Asynchronous Functions
+
+Generator functions work well with asynchronous functions that return Promises. 
+This is because Generator functions can yield a Promise, 
+ process the Promise result asynchronously,
+ and then receive the Promise result back. 
+This allows asynchronous code to be written inside generator functions 
+ like normal synchronous functions. 
 */
 
-function* genFunc(){
+function* genFunc(){ //looks synchronously written
 
-  var a = yield 'a';
-  console.log(a); // a = 123
-  var b = yield 'b'; //exception is thrown, function exits
-  //the code below never occurs because an exception occurred and was uncaught
-  console.log(b); 
-  var c = yield 'c'; 
-  console.log(c); 
-
-  return "finished!"; 
+  var post1title = yield fetch("https://jsonplaceholder.typicode.com/posts/1");
+  console.log(post1title); 
+  //post1title = "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+  var post2title = yield fetch("https://jsonplaceholder.typicode.com/posts/2");
+  console.log(post2title);
+  //post2title = "qui est esse"
 }
 
-var genObject = genFunc();
+var genObject = genFunc(); //creating generator object
 
-var w = genObject.next(); // w = Object {value: 'a', done: false}, starts generator function
-var x = genObject.next(123); // x = Object {value: 'b', done: false}
-var y = genObject.throw(new Error("error thrown!")); // thrown() is called, y = undefined
-var z = genObject.next('abc'); // z = undefined
+var yieldedObject = genObject.next(); //starting generator and returning first yielded object
+var promise = yieldedObject.value; //getting promise from value property of the yielded object
+promise.then(function(val){ //callback for then() of promise
+return val.json(); //getting json stream from fetch response
+}).then(function(val){ //chaining another then()
+var secondYieldedObject = genObject.next(val.title); //sending title back to generator function
+                                                   //and receiving second yielded object from generator function
+var secondPromise = secondYieldedObject.value; //getting promise from value property of second yielded object
+secondPromise.then(function(val){ //callback for then() of promise
+ return val.json();  //getting json stream from fetch response
+}).then(function(val){ //chaining another then()
+genObject.next(val.title); //sending back the second title to the generator function
+})
+})
