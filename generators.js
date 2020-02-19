@@ -1,10 +1,8 @@
 /*
-recursive method for iterating through promises
-
-A recursive function may be used to iterate through yielded Promises
- and return their fulfillment values back to the Generator function.
-
+If a rejected Promise is yielded, the run() method will stop iterating through the Generator function
+ and return a rejected Promise.
 */
+
 const run = genFunc => {
   const genObject = genFunc(); //creating a generator object
 
@@ -25,7 +23,8 @@ const run = genFunc => {
   }
 };
 
-function *gen(){
+
+function *gen2(){
 
   const post1Stream = yield fetch("https://jsonplaceholder.typicode.com/posts/1");
   const post1 = yield post1Stream.json();
@@ -36,23 +35,14 @@ function *gen(){
   console.log(post2.title);
   //post2.title = "qui est esse"
 
+  const error = yield Promise.reject(Error("error message!"));
+  //error thrown here, generator function terminates
+
   const number = yield 12345;
-  console.log(number)
-  //number = 12345
+  console.log(number); //doesn't occur because an earlier promise was rejected 
 
-  const string = yield "abc";
-  console.log(string)
-  //string = "abc"
-
-  const obj = yield {id:123,name:"xyz"};
-  console.log(obj)
-  //obj = Object {id:123,name:"xyz"}
-
-  const a = yield 54434337746;
-  console.log(a);
-  return "done";
-
+  return 'done'; //doesn't occur because an earlier promise was rejected
 }
 
-run(gen).then(x => console.log(x)) //logs "done"
-  .catch(x => console.log(x.message));
+run(gen2).then(x => console.log(x))
+    .catch(err => console.log(err.message)); //logs "error message!" from the rejected Promise
