@@ -1,25 +1,25 @@
 /*
-Generator Objects have a return() method that terminates the Generator function. 
-Return() causes a return statement to be performed at the most recent yield statement. 
-The return() method takes in one optional variable that is used as the return value 
-of the Generator function. 
-Calling return(x) will return an object with a value property equal to x 
-and a done property of true. 
-After return() is called, subsequent yield statements in the Generator function are ignored. 
+Generator Objects have a throw() method that causes an error to be thrown
+ at the most recent yield statement. 
+ The throw() method takes in one argument, which is commonly an Error object.
 */
 
 function* genFunc(){
-  yield 'a';
-  yield 'b'
-  yield 'c'
-  return "finished";
+
+  var a = yield 'a';
+  console.log(a); // a = 123
+  var b = yield 'b'; //exception is thrown, function exits
+  //the code below never occurs because an exception occurred and was uncaught
+  console.log(b); 
+  var c = yield 'c'; 
+  console.log(c); 
+
+  return "finished!"; 
 }
 
 var genObject = genFunc();
 
-var a = genObject.next(); // a = Object {value: 'a', done: false}
-var b = genObject.return('return() was called'); // b = Object {value: "return() was called", done: true}
-var c = genObject.next(); // c = Object {value: undefined, done: true}
-
-console.log(b.value)
-console.log(c.done)
+var w = genObject.next(); // w = Object {value: 'a', done: false}, starts generator function
+var x = genObject.next(123); // x = Object {value: 'b', done: false}
+var y = genObject.throw(new Error("error thrown!")); // thrown() is called, y = undefined
+var z = genObject.next('abc'); // z = undefined
