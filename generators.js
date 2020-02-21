@@ -1,17 +1,42 @@
-function* genFunc(){
-  var a = yield 1;
-  var b = yield a * 2;
-  var c = yield b + a;
-  return a + b + c;
+function delayedPromiseDouble(val) {
+  var promise = new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      resolve(val + val);
+    }, 2000);
+  });
+  return promise;
+}
+
+function delayedPromiseSquare(val) {
+  var promise = new Promise(function(resolve, reject) {
+    setTimeout(function() {
+      resolve(val * val);
+    }, 2000);
+  });
+  return promise;
+}
+
+function* genFunc() {
+  var a = yield delayedPromiseDouble(5);
+  var b = yield delayedPromiseSquare(a);
+  console.log(a + "," + b);
 }
 
 var genObject = genFunc();
 
-var a = genObject.next(1);
-var b = genObject.next(2);
-var c = genObject.next(3);
-var d = genObject.next(4);
+function run(gen) {
+  var genObject = gen();
+  var temp = genObject.next();
+  var promise = temp.value;
+  promise.then(function(val) {
+    var temp2 = genObject.next(val);
+    var secondPromise = temp2.value;
+    secondPromise.then(function(val) {
+      genObject.next(val);
+      return val;
+    });
+  });
+}
 
-console.log(d.value);
-
-// output: 9
+run(genFunc);
+// output: 10,100
