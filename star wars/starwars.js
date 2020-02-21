@@ -12,6 +12,9 @@ function* gen() {
     const tempCharacter = yield tempCharacterResponse.json();
     characterString += tempCharacter.name + "<br>";
   }
+
+  document.getElementById("filmsText").innerHTML = "Film: <br>" + film.title;
+  document.getElementById("peopleText").innerHTML = characterString;
 }
 
 const run = genFunc => {
