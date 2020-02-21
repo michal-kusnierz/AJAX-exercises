@@ -1,4 +1,8 @@
-function* gen() {}
+function* gen() {
+  if(document.getElementById("input").value > 7 || document.getElementById("input").value < 1 ){
+    throw new Error("Invalid Input - Enter a number between 1 and 7");
+}
+}
 
 const run = genFunc => {
   const genObject = genFunc();
