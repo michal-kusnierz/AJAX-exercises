@@ -33,3 +33,9 @@ const run = genFunc => {
     return Promise.reject(ex);
   }
 };
+
+document.getElementById("button").addEventListener("click", () => {
+  run(gen).catch(err => {
+    alert(err.message);
+  });
+});
