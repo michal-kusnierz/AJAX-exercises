@@ -4,6 +4,14 @@ function* gen() {
   }
   const filmResponse = yield fetch("http://swapi.co/api/films/" + document.getElementById("input").value);
   const film = yield filmResponse.json();
+
+  const characters = film.characters;
+  const characterString = "Characters: <br>";
+  for(let i = 0; i < characters.length ; i++){
+    const tempCharacterResponse = yield fetch(characters[i]);
+    const tempCharacter = yield tempCharacterResponse.json();
+    characterString += tempCharacter.name + "<br>";
+  }
 }
 
 const run = genFunc => {
