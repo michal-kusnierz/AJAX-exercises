@@ -1,16 +1,17 @@
 function* genFunc(){
   var a = yield 1;
-  var b = yield 2;
-  var c = yield 3;
-  return 4;
+  var b = yield a * 2;
+  var c = yield b + a;
+  return a + b + c;
 }
 
-var sum = 0;
+var genObject = genFunc();
 
-for (var a of genFunc()){
-  sum += a;
-}
+var a = genObject.next(1);
+var b = genObject.next(2);
+var c = genObject.next(3);
+var d = genObject.next(4);
 
-console.log(sum);
+console.log(d.value);
 
-// output: 6
+// output: 9
