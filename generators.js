@@ -1,13 +1,25 @@
-function* generatorFunction(){
+function* genFuncA() {
   yield 1;
+  yield* genFuncB();
   return 2;
-  yield 3;
 }
 
-var generatorObject = generatorFunction();
-generatorObject.next();
-generatorObject.next();
-var result = generatorObject.next();
-console.log(result.value);
+function* genFuncB() {
+  yield 4;
+  yield 5;
+  return 6;
+}
 
-// output: undefined
+var genObject = genFuncA();
+
+do {
+  var step = genObject.next();
+  console.log(step.value);
+} while (step.done == false);
+
+/* output: 
+  1
+  4
+  5
+  2
+*/
