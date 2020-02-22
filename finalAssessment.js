@@ -1,21 +1,17 @@
-function* genFuncA() {
-   yield 1;
-   yield 2;
-
-   return 3;
+function* genFunc(){
+   var a = yield 50; 
+   var b = yield (a * 5);
+   var c = yield (b + a);
+   return a + b - c;
 }
 
-function* genFuncB(){
-   yield 4;
-   var temp = yield* genFuncA(); 
-   yield 5;
-   yield temp;
+var genObject = genFunc();
 
-   return 6;
-}
+var a = genObject.next(100);
+var b = genObject.next(200);
+var c = genObject.next(b.value / 10);
+var d = genObject.next(c.value);
 
-var arr = [...genFuncB()]
-console.log(arr);
+console.log(d.value);
 
-
-// output: [4,1,2,5,3]
+// output: 0
