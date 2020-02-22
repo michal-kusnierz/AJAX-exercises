@@ -1,32 +1,26 @@
-function* genFunc() {
-  var a = yield 333;
-  var b = yield fetch("https://jsonplaceholder.typicode.com/comments/" + a);
-  var c = yield b.json();
-  var d = yield fetch("https://jsonplaceholder.typicode.com/posts/" + c.postId);
-  var e = yield d.json();
-  var f = yield fetch("https://jsonplaceholder.typicode.com/users/" + e.userId);
-  var g = yield f.json();
-  var h = g.username;
+function* genFunc(){
 
-  console.log(h);
+   var a = yield;
+   console.log(a); 
+   var b = yield;
+   console.log(b); 
+   var c = yield; 
+   console.log(c); 
+   var d = yield; 
+   console.log(d); 
+
+   return "finished!"; 
 }
 
-const run = genFunc => {
-  const genObject = genFunc();
+var genObject = genFunc();
 
-  function iterate(iteration) {
-    if (iteration.done) return Promise.resolve(iteration.value);
-    return Promise.resolve(iteration.value)
-      .then(x => iterate(genObject.next(x)))
-      .catch(x => iterate(genObject.throw(x)));
-  }
-  try {
-    return iterate(genObject.next());
-  } catch (ex) {
-    return Promise.reject(ex);
-  }
-};
+var v = genObject.next(123); 
+var w = genObject.next(456); 
+var x = genObject.next(789); 
+var y = genObject.throw("error thrown!");
+var z = genObject.next(0); 
 
-run(genFunc);
-
-// output: Elwyn.Skiles
+/* output: 
+456
+789
+*/
