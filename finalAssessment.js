@@ -1,29 +1,20 @@
-const initObject = { 
-   method: 'POST',
-   mode: 'cors',
-   body: '{}',
-   headers: new Headers()
-};
-
-const request= new Request("https://jsonplaceholder.typicode.com/posts",initObject);
-
-//first fetch
-fetch(request).then(val => {
+fetch("https://jsonplaceholder.typicode.com/comments/222").then(val => {
     return val.json();
 }).then(val => {
-    console.log("Success");
+    var postId = val.postId;
+    return fetch("https://jsonplaceholder.typicode.com/posts/"  + postId);
+}).then(val => {
+    return val.json();
+}).then(val => {
+    var userId = val.userId;
+    return fetch("https://jsonplaceholder.typicode.com/users/"  + userId);
+}).then(val => {
+    return val.json();
+}).then(val => {
+    console.log(val.username);
 }).catch(err => {
     console.log("Error")
 });
 
-//second fetch
-fetch(request).then(val => {
-    return val.json();
-}).then(val => {
-    console.log("Success 2");
-}).catch(err => {
-    console.log("Error 2")
-});
 
-
-// answer: The first fetch request will succeed but the second request will fail
+// output: Kamren
