@@ -1,20 +1,21 @@
-fetch("https://jsonplaceholder.typicode.com/comments/222").then(val => {
-    return val.json();
-}).then(val => {
-    var postId = val.postId;
-    return fetch("https://jsonplaceholder.typicode.com/posts/"  + postId);
-}).then(val => {
-    return val.json();
-}).then(val => {
-    var userId = val.userId;
-    return fetch("https://jsonplaceholder.typicode.com/users/"  + userId);
-}).then(val => {
-    return val.json();
-}).then(val => {
-    console.log(val.username);
-}).catch(err => {
-    console.log("Error")
-});
+function* genFuncA() {
+   yield 1;
+   yield 2;
+
+   return 3;
+}
+
+function* genFuncB(){
+   yield 4;
+   var temp = yield* genFuncA(); 
+   yield 5;
+   yield temp;
+
+   return 6;
+}
+
+var arr = [...genFuncB()]
+console.log(arr);
 
 
-// output: Kamren
+// output: [4,1,2,5,3]
