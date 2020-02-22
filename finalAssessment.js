@@ -1,13 +1,29 @@
-var myPromise = Promise.resolve(111);
+const initObject = { 
+   method: 'POST',
+   mode: 'cors',
+   body: '{}',
+   headers: new Headers()
+};
 
-var myPromise2 = myPromise.then(function(val){
-    val = val + val;
+const request= new Request("https://jsonplaceholder.typicode.com/posts",initObject);
+
+//first fetch
+fetch(request).then(val => {
+    return val.json();
+}).then(val => {
+    console.log("Success");
+}).catch(err => {
+    console.log("Error")
 });
 
-myPromise2.then(function(val){
-    console.log(val);
-}).catch(function(err){
-    console.log("Error");
+//second fetch
+fetch(request).then(val => {
+    return val.json();
+}).then(val => {
+    console.log("Success 2");
+}).catch(err => {
+    console.log("Error 2")
 });
 
-// output: Undefined
+
+// answer: The first fetch request will succeed but the second request will fail
