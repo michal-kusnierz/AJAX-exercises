@@ -1,30 +1,14 @@
-setTimeout(function(){
-  console.log(1);
-},500);
+function myFunction(x,doStuff){
+  doStuff(x + x);
+}
 
-setTimeout(function(){
-  console.log(2);
-},1000);
+myFunction(5,function(x){
+   myFunction(x + 3,function(x){
+      var result = x - 3;
+      myFunction(result,function(x){
+          console.log(x);
+      })
+   })
+})
 
-setTimeout(function(){
-  console.log(3);
-},0);
-
-setTimeout(function(){
-  console.log(4);
-},10);
-
-console.log(5);
-console.log(6);
-
-
-// output:
-
-/* 
-  5
-  6
-  3
-  4
-  1
-  2
-*/
+// output: 46
